@@ -1,0 +1,357 @@
+extends layout
+
+block content
+	body(id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60" ng-app = "myApp")
+		div(id="spinner")
+		nav(class="navbar navbar-default navbar-fixed-top")
+			div(class="container")
+				div(class="navbar-header")
+					button(type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar")
+						span(class="icon-bar")
+						span(class="icon-bar")
+						span(class="icon-bar")                        
+					a(class="navbar-brand" href="#myPage") Logo
+    
+				div(class="collapse navbar-collapse" id="myNavbar")
+					ul(class="nav navbar-nav navbar-right")
+						li 
+							a(href="#about") ABOUT
+						li 
+							a(href="#services") SERVICES
+						li 
+							a(href="#portfolio") PORTFOLIO
+						li 
+							a(href="#pricing") PRICING
+						li 
+							a(href="#contact") CONTACT
+						li 
+							a(href="#") SIGN IN
+
+		div(class="jumbotron text-center")
+			h1 Company 
+			p We specialize in blablabla 
+			form(class="form-inline")
+				div(class="input-group")
+					div(class="input-group-btn")
+						//Trigger the modal with a button
+						button(type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal") 
+							h3(class = "text3") REQUEST A DEMO
+		// Modal
+		div(id="myModal" class="modal fade" role="dialog" ng-controller="requestDemoCtrl")
+			div(class="modal-dialog")
+
+				// Modal content
+				div(class="modal-content")
+					div(class="modal-header navbar")
+						button(type="button" class="close" data-dismiss="modal" ng-click="resetForm()") &times;
+						h4(class="modal-title text4") REQUEST A DEMO
+					div(class="modal-body")
+						div(ng-show="formCheck")
+							form(name="demoRequest" novalidate ng-submit="sub(demoRequest.$valid,demoRequest.mobContact.$viewValue.length)")
+								div(class="styled-input wide")
+									input#name(type="text",name="name", ng-model="schoolDetails.name",required)
+									label(for="name") Your Name
+									span
+									span(ng-show = "is_valid_name = demoRequest.name.$error.required && (demoRequest.$submitted || demoRequest.name.$dirty)" class="error" ) Name is required.
+									span(ng-hide = "(demoRequest.name.$valid && demoRequest.name.$dirty)" ng-if="demoRequest.$submitted && !is_valid_name" class="error") Please enter a valid name.
+									br
+								div(class="styled-input wide")
+									input#schoolName(type="text",name="schoolName", ng-model="schoolDetails.schoolName",required)
+									label(for="schoolName") School Name
+									span
+									span(ng-show = "is_valid_school = demoRequest.schoolName.$error.required && (demoRequest.$submitted || demoRequest.schoolName.$dirty)" class="error")  School Name is required.
+									span(ng-hide = "(demoRequest.schoolName.$valid && demoRequest.name.$dirty)" ng-if="demoRequest.$submitted && !is_valid_school" class="error") Please enter a valid School Name.									
+									br
+								div(class="styled-input wide")
+									input#mobContact(type="number",maxlength="10", ng-model="schoolDetails.mobContact", name="mobContact",required)
+									label(for="mobContact") Contact
+									span
+									span(ng-show = "is_valid_contact= demoRequest.mobContact.$error.required && (demoRequest.$submitted || demoRequest.mobContact.$dirty)" class="error")  Mobile Number is required
+									span(ng-hide = "is_valid_number = (demoRequest.mobContact.$valid && demoRequest.name.$dirty && (demoRequest.mobContact.$viewValue.length == 10))" ng-if="demoRequest.$submitted && !is_valid_contact" class="error") Please enter a valid Contact Number
+									span(id="mobContactExist" ng-show="inValidContact" class="error") Mobile Number already register with us.
+									
+									br
+								div(class="styled-input wide")
+									input#emailid(type="email",name="emailid", ng-model="schoolDetails.emailid",required)
+									label(for="emailid") Email ID
+									span
+									span(ng-show = "is_valid_email = demoRequest.emailid.$error.required && (demoRequest.$submitted || demoRequest.emailid.$dirty)" class="error") Email Id is required
+									span(ng-hide = "(demoRequest.emailid.$valid && demoRequest.name.$dirty)" ng-if="demoRequest.$submitted && !is_valid_email" class="error")  Please enter a valid Email Id.
+									span(id="emailidExist" ng-show="inValidEmail" class="error") Email Id already registered with us.	
+									br
+								div(class="styled-input wide")
+									textarea#address(name="address", ng-model="schoolDetails.address",required)
+									label(for="address") Address
+									span
+									span(ng-show = "is_valid_address = demoRequest.address.$error.required && (demoRequest.$submitted || demoRequest.address.$dirty)"  class="error")  Address is required.
+									span(ng-hide = "(demoRequest.address.$valid && demoRequest.name.$dirty)" ng-if="demoRequest.$submitted && !is_valid_address" class="error") Please enter a valid Address.									
+									br
+								div(class="modal-footer")
+									button(type="submit",id="submitButton" class="btn btn-info",ng-click="" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Processing Order") Request a Demo!!
+									button(type="button" class="btn btn-default" data-dismiss="modal" ng-click="resetForm()") Close
+						div(id="successMessage" ng-show="!formCheck")
+							svg(class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52")
+								circle(class="checkmark__circle" cx="26" cy="26" r="25" fill="none")
+								path(class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8")
+							span(id="successText" class="errorShowSuccess") Request For Demo has been created.
+							br
+					div(class="modal-footer" ng-show="!formCheck")
+						button(type="button" class="btn btn-default" data-dismiss="modal" ng-click="resetForm()") Close
+	
+		// Container (About Section)
+		div(id="about" class="container-fluid")
+			div(class="row")
+				div(class="col-sm-8")
+					h2 About Company Page
+					br
+					h4. 
+						"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+					br
+					p. 
+						"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+					br
+					button(class="btn btn-default btn-lg") Get in Touch							
+			
+				div( class="col-sm-4")
+					span( class="glyphicon glyphicon-signal logo")
+
+		div( class="container-fluid bg-grey")
+			div( class="row")
+				div( class="col-sm-4")
+					span( class="glyphicon glyphicon-globe logo slideanim")
+			
+				div( class="col-sm-8")
+					h2 Our Values
+					br
+					h4
+						strong MISSION:
+						|Our mission lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+					p
+						strong VISION:
+						|Our vision Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+						|Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+		// Container (Services Section) //
+		div( id="services" class="container-fluid text-center")
+			h2 SERVICES
+			h4 What we offer
+			br
+			div(class="row slideanim")
+				div(class="col-sm-4")
+					span(class="glyphicon glyphicon-off logo-small")
+					h4 POWER
+					p Lorem ipsum dolor sit amet..
+			
+				div(class="col-sm-4")
+					span(class="glyphicon glyphicon-heart logo-small")
+					h4 LOVE
+					p Lorem ipsum dolor sit amet..
+			
+				div(class="col-sm-4")
+					span(class="glyphicon glyphicon-lock logo-small")
+					h4 JOB DONE
+					p Lorem ipsum dolor sit amet..
+			br
+			br
+			div(class="row slideanim")
+				div(class="col-sm-4")
+					span(class="glyphicon glyphicon-leaf logo-small")
+					h4 GREEN
+					p Lorem ipsum dolor sit amet..
+			
+				div( class="col-sm-4")
+					span( class="glyphicon glyphicon-certificate logo-small")
+					h4 CERTIFIED
+					p Lorem ipsum dolor sit amet..
+			
+				div( class="col-sm-4")
+					span( class="glyphicon glyphicon-wrench logo-small")
+					h4(style="color:#303030;") HARD WORK
+					p Lorem ipsum dolor sit amet..
+			
+		  
+
+
+		// Container (Portfolio Section) //
+		div(id="portfolio" class="container-fluid text-center bg-grey")
+			h2 Portfolio
+			br
+			h4 What we have created
+			div( class="row text-center slideanim")
+				div( class="col-sm-4")
+					div( class="thumbnail")
+						img(src="/images/paris.jpg" alt="Paris" width="400" height="300")
+						p
+							strong Paris
+						p Yes, we built Paris
+				
+				div( class="col-sm-4")
+					div( class="thumbnail")
+						img(src="/images/newyork.jpg" alt="New York" width="400" height="300")
+						p
+							strong New York
+						p We built New York
+			  
+			
+				div( class="col-sm-4")
+					div( class="thumbnail")
+						img(src="/images/sanfran.jpg" alt="San Francisco" width="400" height="300")
+						p
+							strong San Francisco
+						p Yes, San Fran is ours
+			  
+			
+			br
+			h2 What our customers say
+			div(id="myCarousel" class="carousel slide text-center" data-ride="carousel")
+				// Indicators //
+				ol(class="carousel-indicators")
+					li(data-target="#myCarousel" data-slide-to="0" class="active")
+					li(data-target="#myCarousel" data-slide-to="1")
+					li(data-target="#myCarousel" data-slide-to="2")
+
+				// Wrapper for slides //
+				div(class="carousel-inner" role="listbox")
+					div(class="item active")
+						h4 "This company is the best. I am so happy with the result!"
+							br
+							span Michael Roe, Vice President, Comment Box
+					div(class="item")
+						h4 "One word... WOW!!"
+							br
+							span John Doe, Salesman, Rep Inc
+					div(class="item")
+						h4 "Could I... BE any more happy with this company?"
+							br
+							span Chandler Bing, Actor, FriendsAlot
+
+					// Left and right controls //
+				a(class="left carousel-control" href="#myCarousel" role="button" data-slide="prev")
+					span(class="glyphicon glyphicon-chevron-left" aria-hidden="true")
+					span(class="sr-only") Previous
+				
+				a(class="right carousel-control" href="#myCarousel" role="button" data-slide="next")
+					span(class="glyphicon glyphicon-chevron-right" aria-hidden="true")
+					span(class="sr-only") Next
+
+		// Container (Pricing Section) //
+		div(id="pricing" class="container-fluid")
+			div(class="text-center")
+				h2 Pricing
+				h4 Choose a payment plan that works for you
+		  
+			div(class="row slideanim")
+				div(class="col-sm-4 col-xs-12")
+					div(class="panel panel-default text-center")
+						div(class="panel-heading")
+							h1 Basic
+				
+						div(class="panel-body")
+							p
+								strong 20 
+								|Lorem
+							p
+								strong 15 
+								|Ipsum
+							p
+								strong 5 
+								|Dolor
+							p
+								strong 2 
+								|Sit
+							p
+								strong Endless 
+								|Amet
+				
+						div(class="panel-footer")
+							h3 $19
+							h4 per month
+							button(class="btn btn-lg") Sign Up
+			   
+				div(class="col-sm-4 col-xs-12")
+					div(class="panel panel-default text-center")
+						div(class="panel-heading")
+							h1 Pro
+				
+						div(class="panel-body")
+							p
+								strong 50 
+								|Lorem
+							p
+								strong 25 
+								|Ipsum
+							p
+								strong 10 
+								|Dolor
+							p
+								strong 5 
+								|Sit
+							p
+								strong Endless
+								|Amet
+				
+						div(class="panel-footer")
+							h3 $29
+							h4 per month
+							button(class="btn btn-lg") Sign Up
+				 
+				div(class="col-sm-4 col-xs-12")
+					div(class="panel panel-default text-center")
+						div(class="panel-heading")
+							h1 Premium
+				
+						div(class="panel-body")
+							p
+								strong 100 
+								|Lorem
+							p
+								strong 50 
+								|Ipsum
+							p
+								strong 25 
+								|Dolor
+							p
+								strong 10 
+								|Sit
+							p
+								strong Endless
+								|Amet
+				
+						div(class="panel-footer")
+							h3 $49
+							h4 per month
+							button(class="btn btn-lg") Sign Up
+
+
+		// Container (Contact Section) //
+		div(id="contact" class="container-fluid bg-grey")
+			h2(class="text-center") CONTACT
+			div(class="row")
+				div(class="col-sm-5")
+					p Contact us and we'll get back to you within 24 hours.
+					p
+						span(class="glyphicon glyphicon-map-marker") Chicago, US
+					p
+						span(class="glyphicon glyphicon-phone") +00 1515151515
+					p 
+						span(class="glyphicon glyphicon-envelope") myemail@something.com
+			
+				div(class="col-sm-7 slideanim")
+					div(class="row")
+						div(class="col-sm-6 form-group")
+							input(class="form-control" id="name" name="name" placeholder="Name" type="text" required)
+				
+						div(class="col-sm-6 form-group")
+							input(class="form-control" id="email" name="email" placeholder="Email" type="email" required)
+				
+					textarea(class="form-control" id="comments" name="comments" placeholder="Comment" rows="5")
+					br
+					div(class="row")
+						div(class="col-sm-12 form-group")
+							button(class="btn btn-default pull-right" type="submit") Send
+
+		footer(class="container-fluid text-center")
+			a(href="#myPage" title="To Top")
+				span( class="glyphicon glyphicon-chevron-up")
+			p Bootstrap Theme Made By 
+				a(href="https://www.w3schools.com" title="Visit w3schools") www.w3schools.com
