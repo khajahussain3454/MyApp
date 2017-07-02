@@ -10,6 +10,10 @@ router.get('/', function(req, res, next) {
 });
 
 
+router.get('/signin', function(req, res, next) {
+  res.render('dashboard_template');
+});
+
 router.post('/demoRequest', function(req, res, next) {
       // create a new user
       var response = [];

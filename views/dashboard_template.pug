@@ -1,0 +1,135 @@
+extends dashboard_layout
+
+block content	
+	body
+		.wrapper
+			.sidebar(data-color='purple', data-image='/images/img/sidebar-5.jpg')
+				//
+					Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
+					Tip 2: you can also add an image using data-image tag
+				.sidebar-wrapper
+					.logo
+						a.simple-text(href='http://www.creative-tim.com')
+							| Creative Tim
+					ul.nav
+						li.active
+							a(href='dashboard.html')
+								i.pe-7s-graph
+								p Dashboard
+						li
+							a(href='user.html')
+								i.pe-7s-user
+								p User Profile
+						li
+							a(href='table.html')
+								i.pe-7s-note2
+								p Table List
+						li
+							a(href='typography.html')
+								i.pe-7s-news-paper
+								p Typography
+						li
+							a(href='icons.html')
+								i.pe-7s-science
+								p Icons
+						li
+							a(href='maps.html')
+								i.pe-7s-map-marker
+								p Maps
+						li
+							a(href='notifications.html')
+								i.pe-7s-bell
+								p Notifications
+						li.active-pro
+							a(href='upgrade.html')
+								i.pe-7s-rocket
+								p Upgrade to PRO
+			.main-panel
+				nav.navbar.navbar-default.navbar-fixed
+					.container-fluid
+						.navbar-header
+							button.navbar-toggle(type='button', data-toggle='collapse', data-target='#navigation-example-2')
+								span.sr-only Toggle navigation
+								span.icon-bar
+								span.icon-bar
+								span.icon-bar
+							a.navbar-brand(href='#') Dashboard
+						.collapse.navbar-collapse
+							ul.nav.navbar-nav.navbar-left
+								li
+									a.dropdown-toggle(href='#', data-toggle='dropdown')
+										i.fa.fa-dashboard
+										p.hidden-lg.hidden-md Dashboard
+								li.dropdown
+									a.dropdown-toggle(href='#', data-toggle='dropdown')
+										i.fa.fa-globe
+										b.caret.hidden-sm.hidden-xs
+										span.notification.hidden-sm.hidden-xs 5
+										p.hidden-lg.hidden-md
+											| 5 Notifications
+											b.caret
+									ul.dropdown-menu
+										li
+											a(href='#') Notification 1
+										li
+											a(href='#') Notification 2
+										li
+											a(href='#') Notification 3
+										li
+											a(href='#') Notification 4
+										li
+											a(href='#') Another notification
+								li
+									a(href='')
+										i.fa.fa-search
+										p.hidden-lg.hidden-md Search
+							ul.nav.navbar-nav.navbar-right
+								li
+									a(href='')
+										p Account
+								li.dropdown
+									a.dropdown-toggle(href='#', data-toggle='dropdown')
+										p
+											| Dropdown
+											b.caret
+									ul.dropdown-menu
+										li
+											a(href='#') Action
+										li
+											a(href='#') Another action
+										li
+											a(href='#') Something
+										li
+											a(href='#') Another action
+										li
+											a(href='#') Something
+										li.divider
+										li
+											a(href='#') Separated link
+								li
+									a(href='#')
+										p Log out
+								li.separator.hidden-lg.hidden-md
+				//div(ng-view)				
+				footer.footer
+					.container-fluid
+						nav.pull-left
+							ul
+								li
+									a(href='#')
+										| Home
+								li
+									a(href='#')
+										| Company
+								li
+									a(href='#')
+										| Portfolio
+								li
+									a(href='#')
+										| Blog
+						p.copyright.pull-right
+							| © 
+							script.
+								document.write(new Date().getFullYear())
+							a(href='http://www.creative-tim.com') Creative Tim
+							| , made with love for a better web
